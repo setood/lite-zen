@@ -15,7 +15,6 @@ VS Code's built-in Zen Mode does too much: it goes fullscreen, centers your layo
 ## Features
 
 - **Single hotkey toggle** — `Cmd+K Cmd+\` (Mac) / `Ctrl+K Ctrl+\` (Win/Linux)
-- **Escape to restore** — press `Escape` in the editor to bring everything back (peek mode)
 - **Hides all 5 UI components**: primary sidebar, bottom panel, activity bar, status bar, auxiliary sidebar
 - **Remembers previous state** — restores activity bar position and status bar visibility to their original values
 - **Per-component control** — choose exactly which panels to hide/restore via settings
@@ -42,20 +41,17 @@ code --install-extension lite-zen-0.1.0.vsix
 | Action            | Mac           | Windows / Linux |
 | ----------------- | ------------- | --------------- |
 | Toggle all panels | `Cmd+K Cmd+\` | `Ctrl+K Ctrl+\` |
-| Restore panels    | `Escape`      | `Escape`        |
 
 Or open Command Palette (`Cmd+Shift+P`) and run **Lite Zen: Toggle All Panels**.
 
-`Escape` only restores panels when focused in the editor and panels are hidden. It won't interfere with other `Escape` uses (closing menus, cancelling search, etc.).
-
-Both hotkeys are fully customizable — rebind them in **Keyboard Shortcuts** (`Cmd+K Cmd+S`).
+The hotkey is fully customizable — rebind them in **Keyboard Shortcuts** (`Cmd+K Cmd+S`).
 
 ## Settings
 
 All settings are under `liteZen.*` and can be changed in Settings UI or `settings.json`:
 
-| Setting                         | Default | Description                                    |
-| ------------------------------- | ------- | ---------------------------------------------- |
+| Setting                       | Default | Description                                    |
+| ----------------------------- | ------- | ---------------------------------------------- |
 | `liteZen.hideSidebar`         | `true`  | Hide the primary sidebar                       |
 | `liteZen.hidePanel`           | `true`  | Hide the bottom panel (terminal, output, etc.) |
 | `liteZen.hideActivityBar`     | `true`  | Hide the activity bar                          |
@@ -76,7 +72,7 @@ Compared as of April 2026.
 | Toggle activity bar      | ✅               | ✅                  | ❌                                                                                     | ❌                                                                                                  |
 | Toggle status bar        | ✅               | ✅                  | ❌                                                                                     | ❌                                                                                                  |
 | Toggle auxiliary sidebar | ✅               | ❌                  | ✅                                                                                     | ❌                                                                                                  |
-| Escape to restore        | ✅               | ❌                  | ❌                                                                                     | N/A                                                                                                 |
+| Escape to restore        | ❌               | ❌                  | ❌                                                                                     | N/A                                                                                                 |
 | Restore on re-toggle     | ✅               | ✅                  | ❌ (hide only)                                                                         | N/A                                                                                                 |
 | Remembers previous state | ✅               | Partial             | ❌                                                                                     | ❌                                                                                                  |
 | Per-component settings   | ✅               | Limited             | ✅                                                                                     | ❌                                                                                                  |
