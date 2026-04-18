@@ -134,7 +134,7 @@ async function showPanels(context: vscode.ExtensionContext): Promise<void> {
   if (config.hidePanel && config.restorePanel) {
     const savedPanelVisible =
         context.workspaceState.get<boolean|undefined>(SAVED_PANEL_VISIBLE);
-    if (savedPanelVisible !== false) {
+    if (savedPanelVisible === true) {
       commands.push(
           vscode.commands.executeCommand('workbench.action.togglePanel'));
     }
