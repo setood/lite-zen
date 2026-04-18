@@ -1,13 +1,13 @@
 {
-  "name": "code-focus",
-  "displayName": "Code Focus",
+  "name": "lite-zen",
+  "displayName": "Lite Zen",
   "description": "Toggle all side panels with a single hotkey, keeping only the editor visible",
   "version": "0.1.0",
   "publisher": "setood",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/setood/code-focus"
+    "url": "https://github.com/setood/lite-zen"
   },
   "icon": "media/icon.png",
   "sponsor": {
@@ -30,65 +30,65 @@
   "contributes": {
     "commands": [
       {
-        "command": "codeFocus.toggle",
-        "title": "Code Focus: Toggle All Panels"
+        "command": "liteZen.toggle",
+        "title": "Lite Zen: Toggle All Panels"
       },
       {
-        "command": "codeFocus.show",
-        "title": "Code Focus: Show All Panels"
+        "command": "liteZen.show",
+        "title": "Lite Zen: Show All Panels"
       }
     ],
     "keybindings": [
       {
-        "command": "codeFocus.toggle",
+        "command": "liteZen.toggle",
         "key": "ctrl+k ctrl+\\",
         "mac": "cmd+k cmd+\\"
       },
       {
-        "command": "codeFocus.show",
+        "command": "liteZen.show",
         "key": "escape",
-        "when": "codeFocus.isHidden && editorTextFocus"
+        "when": "liteZen.isHidden && editorTextFocus"
       }
     ],
     "configuration": {
-      "title": "Code Focus",
+      "title": "Lite Zen",
       "properties": {
-        "codeFocus.hideSidebar": {
+        "liteZen.hideSidebar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the primary sidebar"
         },
-        "codeFocus.hidePanel": {
+        "liteZen.hidePanel": {
           "type": "boolean",
           "default": true,
           "description": "Hide the bottom panel"
         },
-        "codeFocus.hideActivityBar": {
+        "liteZen.hideActivityBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the activity bar"
         },
-        "codeFocus.hideStatusBar": {
+        "liteZen.hideStatusBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the status bar"
         },
-        "codeFocus.hideAuxiliaryBar": {
+        "liteZen.hideAuxiliaryBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the secondary sidebar (auxiliary bar)"
         },
-        "codeFocus.restoreSidebar": {
+        "liteZen.restoreSidebar": {
           "type": "boolean",
           "default": true,
           "description": "Restore the sidebar when toggling back"
         },
-        "codeFocus.restorePanel": {
+        "liteZen.restorePanel": {
           "type": "boolean",
           "default": true,
           "description": "Restore the bottom panel when toggling back"
         },
-        "codeFocus.restoreAuxiliaryBar": {
+        "liteZen.restoreAuxiliaryBar": {
           "type": "boolean",
           "default": true,
           "description": "Restore the auxiliary bar when toggling back"

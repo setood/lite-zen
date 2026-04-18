@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 
-const STATE_KEY = 'codeFocus.isHidden';
-const SAVED_ACTIVITY_BAR_LOCATION = 'codeFocus.savedActivityBarLocation';
-const SAVED_STATUS_BAR_VISIBLE = 'codeFocus.savedStatusBarVisible';
+const STATE_KEY = 'liteZen.isHidden';
+const SAVED_ACTIVITY_BAR_LOCATION = 'liteZen.savedActivityBarLocation';
+const SAVED_STATUS_BAR_VISIBLE = 'liteZen.savedStatusBarVisible';
 
 interface FocusConfig {
   hideSidebar: boolean;
@@ -16,7 +16,7 @@ interface FocusConfig {
 }
 
 function getConfig(): FocusConfig {
-  const cfg = vscode.workspace.getConfiguration('codeFocus');
+  const cfg = vscode.workspace.getConfiguration('liteZen');
   return {
     hideSidebar: cfg.get('hideSidebar', true),
     hidePanel: cfg.get('hidePanel', true),
@@ -30,8 +30,7 @@ function getConfig(): FocusConfig {
 }
 
 async function setFocusContext(value: boolean): Promise<void> {
-  await vscode.commands.executeCommand(
-      'setContext', 'codeFocus.isHidden', value);
+  await vscode.commands.executeCommand('setContext', 'liteZen.isHidden', value);
 }
 
 async function hidePanels(context: vscode.ExtensionContext): Promise<void> {
@@ -139,7 +138,7 @@ export function activate(context: vscode.ExtensionContext): void {
   setFocusContext(wasHidden);
 
   const toggleDisposable =
-      vscode.commands.registerCommand('codeFocus.toggle', async () => {
+      vscode.commands.registerCommand('liteZen.toggle', async () => {
         const isHidden = context.workspaceState.get<boolean>(STATE_KEY, false);
         if (isHidden) {
           await showPanels(context);
@@ -149,7 +148,7 @@ export function activate(context: vscode.ExtensionContext): void {
       });
 
   const showDisposable =
-      vscode.commands.registerCommand('codeFocus.show', async () => {
+      vscode.commands.registerCommand('liteZen.show', async () => {
         const isHidden = context.workspaceState.get<boolean>(STATE_KEY, false);
         if (isHidden) {
           await showPanels(context);

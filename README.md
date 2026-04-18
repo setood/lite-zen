@@ -1,4 +1,4 @@
-# Code Focus — Focus on Code, Hide Everything Else
+# Lite Zen — Focus on Code, Hide Everything Else
 
 **One hotkey to hide all UI panels. One more to bring them back.**
 
@@ -6,11 +6,11 @@ No fullscreen. No zen mode quirks. Just your editor — instantly.
 
 ![Before and After](media/before-after.png)
 
-## Why Code Focus?
+## Why Lite Zen?
 
 VS Code's built-in Zen Mode does too much: it goes fullscreen, centers your layout, hides line numbers, and mutes notifications. Sometimes you just want to **maximize your editor space** without losing your window position or workflow context.
 
-**Code Focus** gives you a single toggle that hides all surrounding UI — sidebar, bottom panel, activity bar, status bar, and secondary sidebar — and restores them exactly as they were.
+**Lite Zen** gives you a single toggle that hides all surrounding UI — sidebar, bottom panel, activity bar, status bar, and secondary sidebar — and restores them exactly as they were.
 
 ## Features
 
@@ -28,13 +28,13 @@ VS Code's built-in Zen Mode does too much: it goes fullscreen, centers your layo
 ### From VS Code
 
 1. Open Extensions (`Cmd+Shift+X`)
-2. Search for `Code Focus`
+2. Search for `Lite Zen`
 3. Click **Install**
 
 ### From VSIX
 
 ```sh
-code --install-extension code-focus-0.1.0.vsix
+code --install-extension lite-zen-0.1.0.vsix
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ code --install-extension code-focus-0.1.0.vsix
 | Toggle all panels | `Cmd+K Cmd+\` | `Ctrl+K Ctrl+\` |
 | Restore panels    | `Escape`      | `Escape`        |
 
-Or open Command Palette (`Cmd+Shift+P`) and run **Code Focus: Toggle All Panels**.
+Or open Command Palette (`Cmd+Shift+P`) and run **Lite Zen: Toggle All Panels**.
 
 `Escape` only restores panels when focused in the editor and panels are hidden. It won't interfere with other `Escape` uses (closing menus, cancelling search, etc.).
 
@@ -52,24 +52,24 @@ Both hotkeys are fully customizable — rebind them in **Keyboard Shortcuts** (`
 
 ## Settings
 
-All settings are under `codeFocus.*` and can be changed in Settings UI or `settings.json`:
+All settings are under `liteZen.*` and can be changed in Settings UI or `settings.json`:
 
 | Setting                         | Default | Description                                    |
 | ------------------------------- | ------- | ---------------------------------------------- |
-| `codeFocus.hideSidebar`         | `true`  | Hide the primary sidebar                       |
-| `codeFocus.hidePanel`           | `true`  | Hide the bottom panel (terminal, output, etc.) |
-| `codeFocus.hideActivityBar`     | `true`  | Hide the activity bar                          |
-| `codeFocus.hideStatusBar`       | `true`  | Hide the status bar                            |
-| `codeFocus.hideAuxiliaryBar`    | `true`  | Hide the secondary sidebar                     |
-| `codeFocus.restoreSidebar`      | `true`  | Restore sidebar on toggle back                 |
-| `codeFocus.restorePanel`        | `true`  | Restore bottom panel on toggle back            |
-| `codeFocus.restoreAuxiliaryBar` | `true`  | Restore secondary sidebar on toggle back       |
+| `liteZen.hideSidebar`         | `true`  | Hide the primary sidebar                       |
+| `liteZen.hidePanel`           | `true`  | Hide the bottom panel (terminal, output, etc.) |
+| `liteZen.hideActivityBar`     | `true`  | Hide the activity bar                          |
+| `liteZen.hideStatusBar`       | `true`  | Hide the status bar                            |
+| `liteZen.hideAuxiliaryBar`    | `true`  | Hide the secondary sidebar                     |
+| `liteZen.restoreSidebar`      | `true`  | Restore sidebar on toggle back                 |
+| `liteZen.restorePanel`        | `true`  | Restore bottom panel on toggle back            |
+| `liteZen.restoreAuxiliaryBar` | `true`  | Restore secondary sidebar on toggle back       |
 
-## Code Focus vs. Alternatives
+## Lite Zen vs. Alternatives
 
 Compared as of April 2026.
 
-| Feature                  | **Code Focus**   | Zen Mode (built-in) | [Hide All](https://marketplace.visualstudio.com/items?itemName=pkubik.hide-all) v0.1.0 | [Auto Hide](https://marketplace.visualstudio.com/items?itemName=sirmspencer.vscode-autohide) v1.0.7 |
+| Feature                  | **Lite Zen**     | Zen Mode (built-in) | [Hide All](https://marketplace.visualstudio.com/items?itemName=pkubik.hide-all) v0.1.0 | [Auto Hide](https://marketplace.visualstudio.com/items?itemName=sirmspencer.vscode-autohide) v1.0.7 |
 | ------------------------ | ---------------- | ------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | Toggle sidebar           | ✅               | ✅                  | ✅                                                                                     | ✅                                                                                                  |
 | Toggle bottom panel      | ✅               | ✅                  | ✅                                                                                     | ✅                                                                                                  |
@@ -88,7 +88,7 @@ Compared as of April 2026.
 
 ## Support
 
-If you find Code Focus useful, consider supporting its development:
+If you find Lite Zen useful, consider supporting its development:
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/setood)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-tip-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/setood)
