@@ -2,7 +2,7 @@
   "name": "lite-zen",
   "displayName": "Lite Zen",
   "description": "Toggle all side panels with a single hotkey, keeping only the editor visible",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "setood",
   "license": "MIT",
   "repository": {
