@@ -27,7 +27,7 @@
     <circle cx="16" cy="14" r="5.5" fill="#ff5f57"/>
     <circle cx="34" cy="14" r="5.5" fill="#febc2e"/>
     <circle cx="52" cy="14" r="5.5" fill="#28c840"/>
-    <text x="250" y="19" text-anchor="middle" font-size="12" fill="#888">extension.ts — Code Focus</text>
+    <text x="250" y="19" text-anchor="middle" font-size="12" fill="#888">extension.ts — Lite Zen</text>
 
     <!-- Activity Bar -->
     <rect x="0" y="30" width="42" height="370" fill="#252526"/>
@@ -81,7 +81,7 @@
     <rect x="358" y="166" width="132" height="28" rx="6" fill="#2d2d30"/>
     <text x="364" y="184" font-size="9" fill="#888">Is there a better way?</text>
     <rect x="358" y="202" width="132" height="36" rx="6" fill="#1a3a5c"/>
-    <text x="364" y="216" font-size="9" fill="#aaa">Try the Code Focus</text>
+    <text x="364" y="216" font-size="9" fill="#aaa">Try the Lite Zen</text>
     <text x="364" y="228" font-size="9" fill="#aaa">extension! ⌘K ⌘\</text>
     <!-- Chat input -->
     <rect x="358" y="364" width="132" height="26" rx="4" fill="#2d2d30" stroke="#555" stroke-width="0.5"/>
@@ -121,7 +121,7 @@
   </defs>
 
   <!-- === AFTER === -->
-  <text x="920" y="30" class="title" text-anchor="middle">After — Code Focus</text>
+  <text x="920" y="30" class="title" text-anchor="middle">After — Lite Zen</text>
 
   <!-- VS Code frame - After -->
   <g transform="translate(680, 45)">
@@ -131,7 +131,7 @@
     <circle cx="16" cy="14" r="5.5" fill="#ff5f57"/>
     <circle cx="34" cy="14" r="5.5" fill="#febc2e"/>
     <circle cx="52" cy="14" r="5.5" fill="#28c840"/>
-    <text x="250" y="19" text-anchor="middle" font-size="12" fill="#888">extension.ts — Code Focus</text>
+    <text x="250" y="19" text-anchor="middle" font-size="12" fill="#888">extension.ts — Lite Zen</text>
 
     <!-- Full-width Editor (no sidebar, no activity bar, no panel) -->
     <rect x="0" y="30" width="500" height="392" fill="#1e1e1e"/>
@@ -143,9 +143,9 @@
     <!-- Code - much more visible now -->
     <text x="14" y="72" class="code"><tspan fill="#555"> 1</tspan>  <tspan class="keyword">import</tspan> * <tspan class="keyword">as</tspan> vscode <tspan class="keyword">from</tspan> <tspan class="string">'vscode'</tspan>;</text>
     <text x="14" y="88" class="code"><tspan fill="#555"> 2</tspan></text>
-    <text x="14" y="104" class="code"><tspan fill="#555"> 3</tspan>  <tspan class="keyword">const</tspan> STATE_KEY = <tspan class="string">'codeFocus.isHidden'</tspan>;</text>
-    <text x="14" y="120" class="code"><tspan fill="#555"> 4</tspan>  <tspan class="keyword">const</tspan> SAVED_ACTIVITY = <tspan class="string">'codeFocus.savedActivityBarLocation'</tspan>;</text>
-    <text x="14" y="136" class="code"><tspan fill="#555"> 5</tspan>  <tspan class="keyword">const</tspan> SAVED_STATUS = <tspan class="string">'codeFocus.savedStatusBarVisible'</tspan>;</text>
+    <text x="14" y="104" class="code"><tspan fill="#555"> 3</tspan>  <tspan class="keyword">const</tspan> STATE_KEY = <tspan class="string">'liteZen.isHidden'</tspan>;</text>
+    <text x="14" y="120" class="code"><tspan fill="#555"> 4</tspan>  <tspan class="keyword">const</tspan> SAVED_ACTIVITY = <tspan class="string">'liteZen.savedActivityBarLocation'</tspan>;</text>
+    <text x="14" y="136" class="code"><tspan fill="#555"> 5</tspan>  <tspan class="keyword">const</tspan> SAVED_STATUS = <tspan class="string">'liteZen.savedStatusBarVisible'</tspan>;</text>
     <text x="14" y="152" class="code"><tspan fill="#555"> 6</tspan></text>
     <text x="14" y="168" class="code"><tspan fill="#555"> 7</tspan>  <tspan class="keyword">interface</tspan> <tspan class="type">FocusConfig</tspan> {</text>
     <text x="14" y="184" class="code"><tspan fill="#555"> 8</tspan>    hideSidebar: <tspan class="type">boolean</tspan>;</text>
@@ -159,7 +159,7 @@
     <text x="14" y="312" class="code"><tspan fill="#555">16</tspan>  }</text>
     <text x="14" y="328" class="code"><tspan fill="#555">17</tspan></text>
     <text x="14" y="344" class="code"><tspan fill="#555">18</tspan>  <tspan class="keyword">function</tspan> <tspan class="func">getConfig</tspan>(): <tspan class="type">FocusConfig</tspan> {</text>
-    <text x="14" y="360" class="code"><tspan fill="#555">19</tspan>    <tspan class="keyword">const</tspan> cfg = vscode.workspace.<tspan class="func">getConfiguration</tspan>(<tspan class="string">'codeFocus'</tspan>);</text>
+    <text x="14" y="360" class="code"><tspan fill="#555">19</tspan>    <tspan class="keyword">const</tspan> cfg = vscode.workspace.<tspan class="func">getConfiguration</tspan>(<tspan class="string">'liteZen'</tspan>);</text>
     <text x="14" y="376" class="code"><tspan fill="#555">20</tspan>    <tspan class="keyword">return</tspan> {</text>
     <text x="14" y="392" class="code"><tspan fill="#555">21</tspan>      hideSidebar: cfg.<tspan class="func">get</tspan>(<tspan class="string">'hideSidebar'</tspan>, <tspan class="keyword">true</tspan>),</text>
     <text x="14" y="408" class="code"><tspan fill="#555">22</tspan>      hidePanel: cfg.<tspan class="func">get</tspan>(<tspan class="string">'hidePanel'</tspan>, <tspan class="keyword">true</tspan>),</text>
