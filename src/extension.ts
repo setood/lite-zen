@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 const STATE_KEY = 'liteZen.isHidden';
 const SAVED_ACTIVITY_BAR_LOCATION = 'liteZen.savedActivityBarLocation';
 const SAVED_STATUS_BAR_VISIBLE = 'liteZen.savedStatusBarVisible';
+const SAVED_PANEL_VISIBLE = 'liteZen.savedPanelVisible';
 
 interface FocusConfig {
   hideSidebar: boolean;
@@ -33,6 +34,14 @@ async function setFocusContext(value: boolean): Promise<void> {
   await vscode.commands.executeCommand('setContext', 'liteZen.isHidden', value);
 }
 
+async function getContextKeyValue<T>(key: string): Promise<T|undefined> {
+  try {
+    return await vscode.commands.executeCommand<T>('getContextKeyValue', key);
+  } catch {
+    return undefined;
+  }
+}
+
 async function hidePanels(context: vscode.ExtensionContext): Promise<void> {
   const config = getConfig();
   const wbConfig = vscode.workspace.getConfiguration('workbench');
@@ -49,6 +58,11 @@ async function hidePanels(context: vscode.ExtensionContext): Promise<void> {
     const currentVisible = wbConfig.get<boolean>('statusBar.visible', true);
     await context.workspaceState.update(
         SAVED_STATUS_BAR_VISIBLE, currentVisible);
+  }
+
+  if (config.hidePanel) {
+    const panelVisible = await getContextKeyValue<boolean>('panelVisible');
+    await context.workspaceState.update(SAVED_PANEL_VISIBLE, panelVisible);
   }
 
   // Execute close commands
@@ -118,8 +132,12 @@ async function showPanels(context: vscode.ExtensionContext): Promise<void> {
         'workbench.action.toggleSidebarVisibility'));
   }
   if (config.hidePanel && config.restorePanel) {
-    commands.push(
-        vscode.commands.executeCommand('workbench.action.togglePanel'));
+    const savedPanelVisible =
+        context.workspaceState.get<boolean|undefined>(SAVED_PANEL_VISIBLE);
+    if (savedPanelVisible !== false) {
+      commands.push(
+          vscode.commands.executeCommand('workbench.action.togglePanel'));
+    }
   }
   if (config.hideAuxiliaryBar && config.restoreAuxiliaryBar) {
     commands.push(
