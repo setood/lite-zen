@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 16px; font-weight: 600; fill: #cccccc; }
+      .label { font-size: 13px; fill: #888888; }
+      .hotkey { font-size: 14px; font-weight: 600; fill: #569cd6; }
+      .code { font-size: 11px; fill: #d4d4d4; font-family: 'Menlo', 'Consolas', monospace; }
+      .keyword { fill: #569cd6; }
+      .string { fill: #ce9178; }
+      .func { fill: #dcdcaa; }
+      .comment { fill: #6a9955; }
+      .type { fill: #4ec9b0; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="500" fill="#1a1a2e" rx="12"/>
+
+  <!-- === BEFORE === -->
+  <text x="260" y="30" class="title" text-anchor="middle">Before</text>
+
+  <!-- VS Code frame - Before -->
+  <g transform="translate(20, 45)">
+    <!-- Title bar -->
+    <rect width="500" height="30" fill="#323233" rx="8" ry="8"/>
+    <rect width="500" height="22" y="8" fill="#323233"/>
+    <circle cx="16" cy="14" r="5.5" fill="#ff5f57"/>
+    <circle cx="34" cy="14" r="5.5" fill="#febc2e"/>
+    <circle cx="52" cy="14" r="5.5" fill="#28c840"/>
+    <text x="250" y="19" text-anchor="middle" font-size="12" fill="#888">extension.ts — Code Focus</text>
+
+    <!-- Activity Bar -->
+    <rect x="0" y="30" width="42" height="370" fill="#252526"/>
+    <rect x="10" y="45" width="22" height="22" rx="3" fill="#555" opacity="0.5"/>
+    <rect x="10" y="78" width="22" height="22" rx="3" fill="#555" opacity="0.5"/>
+    <rect x="10" y="111" width="22" height="22" rx="3" fill="#555" opacity="0.5"/>
+    <rect x="10" y="144" width="22" height="22" rx="3" fill="#555" opacity="0.3"/>
+    <rect x="10" y="177" width="22" height="22" rx="3" fill="#555" opacity="0.3"/>
+
+    <!-- Sidebar -->
+    <rect x="42" y="30" width="150" height="370" fill="#1e1e1e"/>
+    <rect x="42" y="30" width="150" height="24" fill="#252526"/>
+    <text x="52" y="46" font-size="10" fill="#bbbbbb" font-weight="600">EXPLORER</text>
+    <text x="58" y="68" font-size="10" fill="#cccccc">▾ src</text>
+    <text x="72" y="84" font-size="10" fill="#cccccc">  extension.ts</text>
+    <text x="58" y="100" font-size="10" fill="#cccccc">▸ .vscode</text>
+    <text x="58" y="116" font-size="10" fill="#cccccc">  package.json</text>
+    <text x="58" y="132" font-size="10" fill="#cccccc">  tsconfig.json</text>
+    <text x="58" y="148" font-size="10" fill="#888888">  README.md</text>
+
+    <!-- Editor (squeezed between sidebar and copilot panel) -->
+    <rect x="192" y="30" width="158" height="260" fill="#1e1e1e"/>
+    <!-- Tab bar -->
+    <rect x="192" y="30" width="158" height="24" fill="#252526"/>
+    <rect x="192" y="30" width="100" height="24" fill="#1e1e1e"/>
+    <text x="200" y="46" font-size="10" fill="#cccccc">extension.ts</text>
+    <!-- Line numbers + code (truncated, cramped) -->
+    <text x="197" y="70" class="code"><tspan fill="#555">1</tspan> <tspan class="keyword">import</tspan> * <tspan class="keyword">as</tspan> vs...</text>
+    <text x="197" y="84" class="code"><tspan fill="#555">2</tspan></text>
+    <text x="197" y="98" class="code"><tspan fill="#555">3</tspan> <tspan class="keyword">const</tspan> STATE...</text>
+    <text x="197" y="112" class="code"><tspan fill="#555">4</tspan></text>
+    <text x="197" y="126" class="code"><tspan fill="#555">5</tspan> <tspan class="comment">// Save cur...</tspan></text>
+    <text x="197" y="140" class="code"><tspan fill="#555">6</tspan> <tspan class="keyword">async func</tspan>...</text>
+    <text x="197" y="154" class="code"><tspan fill="#555">7</tspan>   <tspan class="keyword">const</tspan> co...</text>
+    <text x="197" y="168" class="code"><tspan fill="#555">8</tspan>   <tspan class="keyword">await</tspan> <tspan class="func">se</tspan>...</text>
+    <text x="197" y="182" class="code"><tspan fill="#555">9</tspan> }</text>
+
+    <!-- Copilot / Auxiliary Sidebar (right panel) -->
+    <rect x="350" y="30" width="150" height="370" fill="#1e1e1e"/>
+    <rect x="350" y="30" width="150" height="24" fill="#252526"/>
+    <!-- Copilot icon + title -->
+    <text x="362" y="46" font-size="10" fill="#bbbbbb" font-weight="600">✦ COPILOT CHAT</text>
+    <!-- Chat messages -->
+    <rect x="358" y="62" width="132" height="36" rx="6" fill="#2d2d30"/>
+    <text x="364" y="76" font-size="9" fill="#888">How do I toggle all</text>
+    <text x="364" y="88" font-size="9" fill="#888">panels in VS Code?</text>
+    <rect x="358" y="106" width="132" height="52" rx="6" fill="#1a3a5c"/>
+    <text x="364" y="120" font-size="9" fill="#aaa">You can use Zen Mode</text>
+    <text x="364" y="132" font-size="9" fill="#aaa">(Cmd+K Z) but it also</text>
+    <text x="364" y="144" font-size="9" fill="#aaa">goes fullscreen and...</text>
+    <rect x="358" y="166" width="132" height="28" rx="6" fill="#2d2d30"/>
+    <text x="364" y="184" font-size="9" fill="#888">Is there a better way?</text>
+    <rect x="358" y="202" width="132" height="36" rx="6" fill="#1a3a5c"/>
+    <text x="364" y="216" font-size="9" fill="#aaa">Try the Code Focus</text>
+    <text x="364" y="228" font-size="9" fill="#aaa">extension! ⌘K ⌘\</text>
+    <!-- Chat input -->
+    <rect x="358" y="364" width="132" height="26" rx="4" fill="#2d2d30" stroke="#555" stroke-width="0.5"/>
+    <text x="366" y="381" font-size="9" fill="#555">Ask Copilot...</text>
+
+    <!-- Bottom Panel (under editor only) -->
+    <rect x="192" y="290" width="158" height="110" fill="#1e1e1e"/>
+    <rect x="192" y="290" width="158" height="24" fill="#252526"/>
+    <text x="200" y="306" font-size="10" fill="#cccccc">TERMINAL</text>
+    <text x="200" y="328" font-size="10" fill="#22c55e" font-family="monospace">❯ </text>
+    <text x="214" y="328" font-size="9" fill="#ccc" font-family="monospace">npm run com...</text>
+    <text x="200" y="344" font-size="10" fill="#888" font-family="monospace">EXIT:0</text>
+
+    <!-- Status Bar -->
+    <rect x="0" y="400" width="500" height="22" fill="#007acc"/>
+    <text x="10" y="414" font-size="10" fill="#fff">main*</text>
+    <text x="70" y="414" font-size="10" fill="#fff">TypeScript</text>
+    <text x="400" y="414" font-size="10" fill="#fff">Ln 6, Col 1</text>
+  </g>
+
+  <!-- Arrow -->
+  <g transform="translate(555, 230)">
+    <rect x="0" y="-18" width="90" height="36" rx="18" fill="#007acc" opacity="0.15"/>
+    <text x="45" y="-2" text-anchor="middle" class="hotkey">⌘K ⌘\</text>
+    <text x="45" y="14" text-anchor="middle" font-size="10" fill="#666">toggle</text>
+    <!-- Arrow lines -->
+    <line x1="90" y1="0" x2="110" y2="0" stroke="#007acc" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="0" y1="0" x2="-20" y2="0" stroke="#007acc" stroke-width="2" marker-start="url(#arrowhead-left)"/>
+  </g>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#007acc"/>
+    </marker>
+    <marker id="arrowhead-left" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#007acc"/>
+    </marker>
+  </defs>
+
+  <!-- === AFTER === -->
+  <text x="920" y="30" class="title" text-anchor="middle">After — Code Focus</text>
+
+  <!-- VS Code frame - After -->
+  <g transform="translate(680, 45)">
+    <!-- Title bar -->
+    <rect width="500" height="30" fill="#323233" rx="8" ry="8"/>
+    <rect width="500" height="22" y="8" fill="#323233"/>
+    <circle cx="16" cy="14" r="5.5" fill="#ff5f57"/>
+    <circle cx="34" cy="14" r="5.5" fill="#febc2e"/>
+    <circle cx="52" cy="14" r="5.5" fill="#28c840"/>
+    <text x="250" y="19" text-anchor="middle" font-size="12" fill="#888">extension.ts — Code Focus</text>
+
+    <!-- Full-width Editor (no sidebar, no activity bar, no panel) -->
+    <rect x="0" y="30" width="500" height="392" fill="#1e1e1e"/>
+    <!-- Tab bar -->
+    <rect x="0" y="30" width="500" height="24" fill="#252526"/>
+    <rect x="0" y="30" width="110" height="24" fill="#1e1e1e"/>
+    <text x="14" y="46" font-size="10" fill="#cccccc">extension.ts</text>
+
+    <!-- Code - much more visible now -->
+    <text x="14" y="72" class="code"><tspan fill="#555"> 1</tspan>  <tspan class="keyword">import</tspan> * <tspan class="keyword">as</tspan> vscode <tspan class="keyword">from</tspan> <tspan class="string">'vscode'</tspan>;</text>
+    <text x="14" y="88" class="code"><tspan fill="#555"> 2</tspan></text>
+    <text x="14" y="104" class="code"><tspan fill="#555"> 3</tspan>  <tspan class="keyword">const</tspan> STATE_KEY = <tspan class="string">'codeFocus.isHidden'</tspan>;</text>
+    <text x="14" y="120" class="code"><tspan fill="#555"> 4</tspan>  <tspan class="keyword">const</tspan> SAVED_ACTIVITY = <tspan class="string">'codeFocus.savedActivityBarLocation'</tspan>;</text>
+    <text x="14" y="136" class="code"><tspan fill="#555"> 5</tspan>  <tspan class="keyword">const</tspan> SAVED_STATUS = <tspan class="string">'codeFocus.savedStatusBarVisible'</tspan>;</text>
+    <text x="14" y="152" class="code"><tspan fill="#555"> 6</tspan></text>
+    <text x="14" y="168" class="code"><tspan fill="#555"> 7</tspan>  <tspan class="keyword">interface</tspan> <tspan class="type">FocusConfig</tspan> {</text>
+    <text x="14" y="184" class="code"><tspan fill="#555"> 8</tspan>    hideSidebar: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="200" class="code"><tspan fill="#555"> 9</tspan>    hidePanel: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="216" class="code"><tspan fill="#555">10</tspan>    hideActivityBar: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="232" class="code"><tspan fill="#555">11</tspan>    hideStatusBar: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="248" class="code"><tspan fill="#555">12</tspan>    hideAuxiliaryBar: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="264" class="code"><tspan fill="#555">13</tspan>    restoreSidebar: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="280" class="code"><tspan fill="#555">14</tspan>    restorePanel: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="296" class="code"><tspan fill="#555">15</tspan>    restoreAuxiliaryBar: <tspan class="type">boolean</tspan>;</text>
+    <text x="14" y="312" class="code"><tspan fill="#555">16</tspan>  }</text>
+    <text x="14" y="328" class="code"><tspan fill="#555">17</tspan></text>
+    <text x="14" y="344" class="code"><tspan fill="#555">18</tspan>  <tspan class="keyword">function</tspan> <tspan class="func">getConfig</tspan>(): <tspan class="type">FocusConfig</tspan> {</text>
+    <text x="14" y="360" class="code"><tspan fill="#555">19</tspan>    <tspan class="keyword">const</tspan> cfg = vscode.workspace.<tspan class="func">getConfiguration</tspan>(<tspan class="string">'codeFocus'</tspan>);</text>
+    <text x="14" y="376" class="code"><tspan fill="#555">20</tspan>    <tspan class="keyword">return</tspan> {</text>
+    <text x="14" y="392" class="code"><tspan fill="#555">21</tspan>      hideSidebar: cfg.<tspan class="func">get</tspan>(<tspan class="string">'hideSidebar'</tspan>, <tspan class="keyword">true</tspan>),</text>
+    <text x="14" y="408" class="code"><tspan fill="#555">22</tspan>      hidePanel: cfg.<tspan class="func">get</tspan>(<tspan class="string">'hidePanel'</tspan>, <tspan class="keyword">true</tspan>),</text>
+
+    <!-- No status bar! Clean bottom -->
+  </g>
+
+  <!-- Escape hint -->
+  <g transform="translate(680, 460)">
+    <text x="250" y="0" text-anchor="middle" font-size="11" fill="#666">Press <tspan class="hotkey">Escape</tspan> or <tspan class="hotkey">⌘K ⌘\</tspan> to restore</text>
+  </g>
+</svg>

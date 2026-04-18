@@ -4,7 +4,7 @@
 
 No fullscreen. No zen mode quirks. Just your editor — instantly.
 
-![Toggle Demo](media/demo.gif)
+![Before and After](media/before-after.svg)
 
 ## Why Code Focus?
 
@@ -39,10 +39,10 @@ code --install-extension code-focus-0.1.0.vsix
 
 ## Usage
 
-| Action | Mac | Windows / Linux |
-|--------|-----|-----------------|
+| Action            | Mac           | Windows / Linux |
+| ----------------- | ------------- | --------------- |
 | Toggle all panels | `Cmd+K Cmd+\` | `Ctrl+K Ctrl+\` |
-| Restore panels | `Escape` | `Escape` |
+| Restore panels    | `Escape`      | `Escape`        |
 
 Or open Command Palette (`Cmd+Shift+P`) and run **Code Focus: Toggle All Panels**.
 
@@ -54,35 +54,37 @@ Both hotkeys are fully customizable — rebind them in **Keyboard Shortcuts** (`
 
 All settings are under `codeFocus.*` and can be changed in Settings UI or `settings.json`:
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `codeFocus.hideSidebar` | `true` | Hide the primary sidebar |
-| `codeFocus.hidePanel` | `true` | Hide the bottom panel (terminal, output, etc.) |
-| `codeFocus.hideActivityBar` | `true` | Hide the activity bar |
-| `codeFocus.hideStatusBar` | `true` | Hide the status bar |
-| `codeFocus.hideAuxiliaryBar` | `true` | Hide the secondary sidebar |
-| `codeFocus.restoreSidebar` | `true` | Restore sidebar on toggle back |
-| `codeFocus.restorePanel` | `true` | Restore bottom panel on toggle back |
-| `codeFocus.restoreAuxiliaryBar` | `true` | Restore secondary sidebar on toggle back |
+| Setting                         | Default | Description                                    |
+| ------------------------------- | ------- | ---------------------------------------------- |
+| `codeFocus.hideSidebar`         | `true`  | Hide the primary sidebar                       |
+| `codeFocus.hidePanel`           | `true`  | Hide the bottom panel (terminal, output, etc.) |
+| `codeFocus.hideActivityBar`     | `true`  | Hide the activity bar                          |
+| `codeFocus.hideStatusBar`       | `true`  | Hide the status bar                            |
+| `codeFocus.hideAuxiliaryBar`    | `true`  | Hide the secondary sidebar                     |
+| `codeFocus.restoreSidebar`      | `true`  | Restore sidebar on toggle back                 |
+| `codeFocus.restorePanel`        | `true`  | Restore bottom panel on toggle back            |
+| `codeFocus.restoreAuxiliaryBar` | `true`  | Restore secondary sidebar on toggle back       |
 
 ## Code Focus vs. Alternatives
 
-| Feature | **Code Focus** | Zen Mode (built-in) | Hide All | Auto Hide |
-|---------|----------------|---------------------|----------|-----------|
-| Toggle sidebar | ✅ | ✅ | ✅ | ✅ |
-| Toggle bottom panel | ✅ | ✅ | ✅ | ✅ |
-| Toggle activity bar | ✅ | ✅ | ❌ | ❌ |
-| Toggle status bar | ✅ | ✅ | ❌ | ❌ |
-| Toggle auxiliary sidebar | ✅ | ❌ | ✅ | ❌ |
-| Escape to restore | ✅ | ❌ | ❌ | N/A |
-| Restore on re-toggle | ✅ | ✅ | ❌ (hide only) | N/A |
-| Remembers previous state | ✅ | Partial | ❌ | ❌ |
-| Per-component settings | ✅ | Limited | ✅ | ❌ |
-| No fullscreen | ✅ | ❌ (default) | ✅ | ✅ |
-| No centered layout | ✅ | ❌ (optional) | ✅ | ✅ |
-| No hidden line numbers | ✅ | ❌ (optional) | ✅ | ✅ |
-| Trigger | Hotkey / Command | Hotkey | Command only | Automatic |
-| Actively maintained | ✅ | ✅ | ❌ (2023) | ❌ (2021) |
+Compared as of April 2026.
+
+| Feature                  | **Code Focus**   | Zen Mode (built-in) | [Hide All](https://marketplace.visualstudio.com/items?itemName=pkubik.hide-all) v0.1.0 | [Auto Hide](https://marketplace.visualstudio.com/items?itemName=sirmspencer.vscode-autohide) v1.0.7 |
+| ------------------------ | ---------------- | ------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Toggle sidebar           | ✅               | ✅                  | ✅                                                                                     | ✅                                                                                                  |
+| Toggle bottom panel      | ✅               | ✅                  | ✅                                                                                     | ✅                                                                                                  |
+| Toggle activity bar      | ✅               | ✅                  | ❌                                                                                     | ❌                                                                                                  |
+| Toggle status bar        | ✅               | ✅                  | ❌                                                                                     | ❌                                                                                                  |
+| Toggle auxiliary sidebar | ✅               | ❌                  | ✅                                                                                     | ❌                                                                                                  |
+| Escape to restore        | ✅               | ❌                  | ❌                                                                                     | N/A                                                                                                 |
+| Restore on re-toggle     | ✅               | ✅                  | ❌ (hide only)                                                                         | N/A                                                                                                 |
+| Remembers previous state | ✅               | Partial             | ❌                                                                                     | ❌                                                                                                  |
+| Per-component settings   | ✅               | Limited             | ✅                                                                                     | ❌                                                                                                  |
+| No fullscreen            | ✅               | ❌ (default)        | ✅                                                                                     | ✅                                                                                                  |
+| No centered layout       | ✅               | ❌ (optional)       | ✅                                                                                     | ✅                                                                                                  |
+| No hidden line numbers   | ✅               | ❌ (optional)       | ✅                                                                                     | ✅                                                                                                  |
+| Trigger                  | Hotkey / Command | Hotkey              | Command only                                                                           | Automatic                                                                                           |
+| Last updated             | 2026             | VS Code built-in    | Jan 2023                                                                               | Sep 2021                                                                                            |
 
 ## License
 
