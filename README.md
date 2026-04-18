@@ -54,8 +54,8 @@ All settings are under `liteZen.*` and can be changed in Settings UI or `setting
 | ----------------------------- | ------- | ---------------------------------------------- |
 | `liteZen.hideSidebar`         | `true`  | Hide the primary sidebar                       |
 | `liteZen.hidePanel`           | `true`  | Hide the bottom panel (terminal, output, etc.) |
-| `liteZen.hideActivityBar`     | `true`  | Hide the activity bar                          |
-| `liteZen.hideStatusBar`       | `true`  | Hide the status bar                            |
+| `liteZen.hideActivityBar`     | `false` | Hide the activity bar                          |
+| `liteZen.hideStatusBar`       | `false` | Hide the status bar                            |
 | `liteZen.hideAuxiliaryBar`    | `true`  | Hide the secondary sidebar                     |
 | `liteZen.restoreSidebar`      | `true`  | Restore sidebar on toggle back                 |
 | `liteZen.restorePanel`        | `true`  | Restore bottom panel on toggle back            |

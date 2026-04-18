@@ -20,8 +20,8 @@ function getConfig(): FocusConfig {
   return {
     hideSidebar: cfg.get('hideSidebar', true),
     hidePanel: cfg.get('hidePanel', true),
-    hideActivityBar: cfg.get('hideActivityBar', true),
-    hideStatusBar: cfg.get('hideStatusBar', true),
+    hideActivityBar: cfg.get('hideActivityBar', false),
+    hideStatusBar: cfg.get('hideStatusBar', false),
     hideAuxiliaryBar: cfg.get('hideAuxiliaryBar', true),
     restoreSidebar: cfg.get('restoreSidebar', true),
     restorePanel: cfg.get('restorePanel', true),

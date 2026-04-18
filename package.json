@@ -2,7 +2,7 @@
   "name": "lite-zen",
   "displayName": "Lite Zen",
   "description": "Toggle all side panels with a single hotkey, keeping only the editor visible",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "setood",
   "license": "MIT",
   "repository": {
@@ -65,12 +65,12 @@
         },
         "liteZen.hideActivityBar": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Hide the activity bar"
         },
         "liteZen.hideStatusBar": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Hide the status bar"
         },
         "liteZen.hideAuxiliaryBar": {
