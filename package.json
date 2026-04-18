@@ -1,0 +1,91 @@
+{
+  "name": "code-focus",
+  "displayName": "Code Focus",
+  "description": "Toggle all side panels with a single hotkey, keeping only the editor visible",
+  "version": "0.1.0",
+  "publisher": "setood",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeFocus.toggle",
+        "title": "Code Focus: Toggle All Panels"
+      },
+      {
+        "command": "codeFocus.show",
+        "title": "Code Focus: Show All Panels"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "codeFocus.toggle",
+        "key": "ctrl+k ctrl+\\",
+        "mac": "cmd+k cmd+\\"
+      },
+      {
+        "command": "codeFocus.show",
+        "key": "escape",
+        "when": "codeFocus.isHidden && editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Code Focus",
+      "properties": {
+        "codeFocus.hideSidebar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide the primary sidebar"
+        },
+        "codeFocus.hidePanel": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide the bottom panel"
+        },
+        "codeFocus.hideActivityBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide the activity bar"
+        },
+        "codeFocus.hideStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide the status bar"
+        },
+        "codeFocus.hideAuxiliaryBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide the secondary sidebar (auxiliary bar)"
+        },
+        "codeFocus.restoreSidebar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Restore the sidebar when toggling back"
+        },
+        "codeFocus.restorePanel": {
+          "type": "boolean",
+          "default": true,
+          "description": "Restore the bottom panel when toggling back"
+        },
+        "codeFocus.restoreAuxiliaryBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Restore the auxiliary bar when toggling back"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.116.0",
+    "typescript": "^6.0.3"
+  }
+}
