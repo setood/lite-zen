@@ -4,7 +4,7 @@
 
 No fullscreen. No zen mode quirks. Just your editor — instantly.
 
-![Before and After](media/before-after.svg)
+![Before and After](media/before-after.png)
 
 ## Why Code Focus?
 
@@ -85,6 +85,14 @@ Compared as of April 2026.
 | No hidden line numbers   | ✅               | ❌ (optional)       | ✅                                                                                     | ✅                                                                                                  |
 | Trigger                  | Hotkey / Command | Hotkey              | Command only                                                                           | Automatic                                                                                           |
 | Last updated             | 2026             | VS Code built-in    | Jan 2023                                                                               | Sep 2021                                                                                            |
+
+## Support
+
+If you find Code Focus useful, consider supporting its development:
+
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/setood)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-tip-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/setood)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-sponsor-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/setood)
 
 ## License
 

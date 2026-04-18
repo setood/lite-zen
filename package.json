@@ -4,8 +4,17 @@
   "description": "Toggle all side panels with a single hotkey, keeping only the editor visible",
   "version": "0.1.0",
   "publisher": "setood",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/setood/code-focus"
+  },
+  "icon": "media/icon.png",
+  "sponsor": {
+    "url": "https://ko-fi.com/setood"
+  },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.116.0"
   },
   "categories": [
     "Other"
@@ -15,7 +24,8 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
   },
   "contributes": {
     "commands": [
@@ -88,6 +98,7 @@
   },
   "devDependencies": {
     "@types/vscode": "^1.116.0",
+    "@vscode/vsce": "^3.0.0",
     "typescript": "^6.0.3"
   }
 }
