@@ -65,22 +65,22 @@ All settings are under `liteZen.*` and can be changed in Settings UI or `setting
 
 Compared as of April 2026.
 
-| Feature                  | **Lite Zen**     | Zen Mode (built-in) | [Hide All](https://marketplace.visualstudio.com/items?itemName=pkubik.hide-all) v0.1.0 | [Auto Hide](https://marketplace.visualstudio.com/items?itemName=sirmspencer.vscode-autohide) v1.0.7 |
-| ------------------------ | ---------------- | ------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Toggle sidebar           | ✅               | ✅                  | ✅                                                                                     | ✅                                                                                                  |
-| Toggle bottom panel      | ✅               | ✅                  | ✅                                                                                     | ✅                                                                                                  |
-| Toggle activity bar      | ✅               | ✅                  | ❌                                                                                     | ❌                                                                                                  |
-| Toggle status bar        | ✅               | ✅                  | ❌                                                                                     | ❌                                                                                                  |
-| Toggle auxiliary sidebar | ✅               | ❌                  | ✅                                                                                     | ❌                                                                                                  |
-| Escape to restore        | ❌               | ❌                  | ❌                                                                                     | N/A                                                                                                 |
-| Restore on re-toggle     | ✅               | ✅                  | ❌ (hide only)                                                                         | N/A                                                                                                 |
-| Remembers previous state | ✅               | Partial             | ❌                                                                                     | ❌                                                                                                  |
-| Per-component settings   | ✅               | Limited             | ✅                                                                                     | ❌                                                                                                  |
-| No fullscreen            | ✅               | ❌ (default)        | ✅                                                                                     | ✅                                                                                                  |
-| No centered layout       | ✅               | ❌ (optional)       | ✅                                                                                     | ✅                                                                                                  |
-| No hidden line numbers   | ✅               | ❌ (optional)       | ✅                                                                                     | ✅                                                                                                  |
-| Trigger                  | Hotkey / Command | Hotkey              | Command only                                                                           | Automatic                                                                                           |
-| Last updated             | 2026             | VS Code built-in    | Jan 2023                                                                               | Sep 2021                                                                                            |
+| Feature                  | **Lite Zen**     | Zen Mode (built-in) | Hide All v0.1.0 | Auto Hide v1.0.7 |
+| ------------------------ | ---------------- | ------------------- | --------------- | ---------------- |
+| Toggle sidebar           | ✅               | ✅                  | ✅              | ✅               |
+| Toggle bottom panel      | ✅               | ✅                  | ✅              | ✅               |
+| Toggle activity bar      | ✅               | ✅                  | ❌              | ❌               |
+| Toggle status bar        | ✅               | ✅                  | ❌              | ❌               |
+| Toggle auxiliary sidebar | ✅               | ❌                  | ✅              | ❌               |
+| Escape to restore        | ❌               | ❌                  | ❌              | N/A              |
+| Restore on re-toggle     | ✅               | ✅                  | ❌ (hide only)  | N/A              |
+| Remembers previous state | ✅               | Partial             | ❌              | ❌               |
+| Per-component settings   | ✅               | Limited             | ✅              | ❌               |
+| No fullscreen            | ✅               | ❌ (default)        | ✅              | ✅               |
+| No centered layout       | ✅               | ❌ (optional)       | ✅              | ✅               |
+| No hidden line numbers   | ✅               | ❌ (optional)       | ✅              | ✅               |
+| Trigger                  | Hotkey / Command | Hotkey              | Command only    | Automatic        |
+| Last updated             | 2026             | VS Code built-in    | Jan 2023        | Sep 2021         |
 
 ## Support
 
