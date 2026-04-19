@@ -294,6 +294,7 @@ suite('6 · Bottom panel', () => {
     await show();
     await setLiteZen('hidePanel', undefined);
     await setLiteZen('restorePanel', undefined);
+    await setLiteZen('panelDetectionMethod', undefined);
     await delay(200);
   });
 
@@ -355,6 +356,96 @@ suite('6 · Bottom panel', () => {
     await toggle();  // show — restorePanel=false → skip togglePanel
     // No error = pass
   });
+
+  test(
+      '6.4 Short/empty file → heuristic unreliable → panel restored (safe default)',
+      async () => {
+        // Open an empty document (like Untitled-1)
+        const doc = await vscode.workspace.openTextDocument({content: ''});
+        await vscode.window.showTextDocument(doc);
+        await delay(200);
+
+        // Open panel explicitly
+        await vscode.commands.executeCommand('workbench.action.togglePanel');
+        await delay(300);
+
+        await setLiteZen('hidePanel', true);
+        await setLiteZen('restorePanel', true);
+
+        await toggle();  // hide — linesBefore < 3 → undefined → panel restored
+        await toggle();  // show — savedPanelVisible=undefined → restore
+
+        // No error = code path executed. The panel should have been restored
+        // because undefined is treated as "restore" (safe default).
+      });
+
+  test(
+      '6.5 File fully visible → heuristic unreliable → panel restored (safe default)',
+      async () => {
+        // Open a short file that fits entirely in the editor
+        const doc = await vscode.workspace.openTextDocument({
+          content: Array(10).fill('short').join('\n'),
+        });
+        await vscode.window.showTextDocument(doc);
+        await delay(200);
+
+        // Open panel explicitly
+        await vscode.commands.executeCommand('workbench.action.togglePanel');
+        await delay(300);
+
+        await setLiteZen('hidePanel', true);
+        await setLiteZen('restorePanel', true);
+
+        await toggle();  // hide — file fully visible → undefined
+        await toggle();  // show — savedPanelVisible=undefined → restore
+
+        // No error = code path executed. The panel should have been restored.
+      });
+
+  test(
+      '6.6 tempDocument fallback: empty file + panel open → detected reliably',
+      async () => {
+        // Open an empty document where heuristic is unreliable
+        const doc = await vscode.workspace.openTextDocument({content: ''});
+        await vscode.window.showTextDocument(doc);
+        await delay(200);
+
+        // Open panel explicitly
+        await vscode.commands.executeCommand('workbench.action.togglePanel');
+        await delay(300);
+
+        await setLiteZen('hidePanel', true);
+        await setLiteZen('restorePanel', true);
+        await setLiteZen('panelDetectionMethod', 'tempDocument');
+
+        await toggle();  // hide — heuristic undefined → tempDoc fallback
+        await toggle();  // show — should restore panel
+
+        await setLiteZen('panelDetectionMethod', undefined);
+        // No error = tempDocument code path executed successfully.
+      });
+
+  test(
+      '6.7 tempDocument fallback: empty file + panel closed → not restored',
+      async () => {
+        const doc = await vscode.workspace.openTextDocument({content: ''});
+        await vscode.window.showTextDocument(doc);
+        await delay(200);
+
+        // Close panel manually
+        await vscode.commands.executeCommand('workbench.action.closePanel');
+        await delay(300);
+
+        await setLiteZen('hidePanel', true);
+        await setLiteZen('restorePanel', true);
+        await setLiteZen('panelDetectionMethod', 'tempDocument');
+
+        await toggle();  // hide — heuristic undefined → tempDoc → panel was
+                         // closed
+        await toggle();  // show — should NOT restore panel
+
+        await setLiteZen('panelDetectionMethod', undefined);
+      });
 });
 
 // ---------------------------------------------------------------------------

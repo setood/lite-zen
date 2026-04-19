@@ -2,7 +2,7 @@
   "name": "lite-zen",
   "displayName": "Lite Zen",
   "description": "Toggle all side panels with a single hotkey, keeping only the editor visible",
-  "version": "1.0.8",
+  "version": "1.1.5",
   "publisher": "setood",
   "license": "MIT",
   "repository": {
@@ -93,6 +93,24 @@
           "type": "boolean",
           "default": true,
           "description": "Restore the auxiliary bar when toggling back"
+        },
+        "liteZen.panelDetectionMethod": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "tempDocument"
+          ],
+          "default": "auto",
+          "enumDescriptions": [
+            "Use visible-lines heuristic on the current editor. Falls back to restoring the panel when detection is unreliable (short/empty files).",
+            "Same heuristic, but when it is unreliable, opens a temporary long document to measure reliably instead of guessing."
+          ],
+          "description": "Method used to detect whether the bottom panel was open before hiding"
+        },
+        "liteZen.enableLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Write diagnostic logs to log.txt in the workspace root"
         }
       }
     }

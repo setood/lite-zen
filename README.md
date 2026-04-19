@@ -65,6 +65,8 @@ All settings are under `liteZen.*` and can be changed in Settings UI or `setting
 | `liteZen.restoreSidebar`      | `true`  | Restore sidebar on toggle back                 |
 | `liteZen.restorePanel`        | `true`  | Restore bottom panel on toggle back            |
 | `liteZen.restoreAuxiliaryBar` | `true`  | Restore secondary sidebar on toggle back       |
+| `liteZen.panelDetectionMethod`| `"auto"` | Panel detection: `"auto"` (heuristic, safe default on short files) or `"tempDocument"` (fallback via temp doc for reliable detection) |
+| `liteZen.enableLogging`       | `false` | Write diagnostic logs to `log.txt` in workspace root |
 
 ## Lite Zen vs. Alternatives
 
