@@ -33,7 +33,12 @@ VS Code's built-in Zen Mode does too much: it goes fullscreen, centers your layo
 ### From VSIX
 
 ```sh
-code --install-extension lite-zen-0.1.0.vsix
+git clone https://github.com/setood/lite-zen.git
+cd lite-zen
+npm install
+npm run package
+# This produces a `lite-zen-<version>.vsix` file. Install it with:
+code --install-extension lite-zen-*.vsix
 ```
 
 ## Usage

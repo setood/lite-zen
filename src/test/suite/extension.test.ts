@@ -11,23 +11,21 @@ function delay(ms: number): Promise<void> {
 }
 
 /** Read a fresh workbench config value (avoids stale cached objects). */
-function wb<T>(key: string): T | undefined {
+function wb<T>(key: string): T|undefined {
   return vscode.workspace.getConfiguration('workbench').get<T>(key);
 }
 
 /** Update a liteZen setting at Global level. */
 async function setLiteZen(key: string, value: unknown): Promise<void> {
-  await vscode.workspace
-    .getConfiguration('liteZen')
-    .update(key, value, vscode.ConfigurationTarget.Global);
+  await vscode.workspace.getConfiguration('liteZen').update(
+      key, value, vscode.ConfigurationTarget.Global);
   await delay(200);
 }
 
 /** Update a workbench setting at Global level. */
 async function setWb(key: string, value: unknown): Promise<void> {
-  await vscode.workspace
-    .getConfiguration('workbench')
-    .update(key, value, vscode.ConfigurationTarget.Global);
+  await vscode.workspace.getConfiguration('workbench')
+      .update(key, value, vscode.ConfigurationTarget.Global);
   await delay(200);
 }
 
@@ -84,7 +82,7 @@ suite('2 · Toggle cycle', () => {
 
   teardown(async () => {
     // Ensure shown state
-    await show(); // safe even if already shown
+    await show();  // safe even if already shown
     await setLiteZen('hideActivityBar', undefined);
     await setLiteZen('hideStatusBar', undefined);
     await delay(200);
@@ -93,30 +91,36 @@ suite('2 · Toggle cycle', () => {
   test('2.1 Toggle hides observable components', async () => {
     await toggle();
 
-    assert.strictEqual(wb('activityBar.location'), 'hidden', 'Activity bar should be hidden');
-    assert.strictEqual(wb('statusBar.visible'), false, 'Status bar should be hidden');
+    assert.strictEqual(
+        wb('activityBar.location'), 'hidden', 'Activity bar should be hidden');
+    assert.strictEqual(
+        wb('statusBar.visible'), false, 'Status bar should be hidden');
   });
 
   test('2.2 Toggle twice → full roundtrip', async () => {
     const origAB = wb<string>('activityBar.location');
     const origSB = wb<boolean>('statusBar.visible');
 
-    await toggle(); // hide
-    await toggle(); // show
+    await toggle();  // hide
+    await toggle();  // show
 
-    assert.strictEqual(wb('activityBar.location'), origAB, 'Activity bar not restored');
-    assert.strictEqual(wb('statusBar.visible'), origSB, 'Status bar not restored');
+    assert.strictEqual(
+        wb('activityBar.location'), origAB, 'Activity bar not restored');
+    assert.strictEqual(
+        wb('statusBar.visible'), origSB, 'Status bar not restored');
   });
 
   test('2.3 Multiple rapid toggles (×4) → final state is shown', async () => {
     const origAB = wb<string>('activityBar.location');
 
-    await toggle(); // 1 – hide
-    await toggle(); // 2 – show
-    await toggle(); // 3 – hide
-    await toggle(); // 4 – show
+    await toggle();  // 1 – hide
+    await toggle();  // 2 – show
+    await toggle();  // 3 – hide
+    await toggle();  // 4 – show
 
-    assert.strictEqual(wb('activityBar.location'), origAB, 'Activity bar should be back to original after 4 toggles');
+    assert.strictEqual(
+        wb('activityBar.location'), origAB,
+        'Activity bar should be back to original after 4 toggles');
   });
 });
 
@@ -138,28 +142,31 @@ suite('3 · Show command', () => {
   test('3.1 Show restores from hidden', async () => {
     const origAB = wb<string>('activityBar.location');
 
-    await toggle(); // hide
+    await toggle();  // hide
     assert.strictEqual(wb('activityBar.location'), 'hidden');
 
     await show();
-    assert.strictEqual(wb('activityBar.location'), origAB, 'Activity bar not restored by show');
+    assert.strictEqual(
+        wb('activityBar.location'), origAB,
+        'Activity bar not restored by show');
   });
 
   test('3.2 Show is idempotent when visible', async () => {
     const origAB = wb<string>('activityBar.location');
 
-    await show(); // already visible — should not throw or change anything
+    await show();  // already visible — should not throw or change anything
     assert.strictEqual(wb('activityBar.location'), origAB);
   });
 
   test('3.3 Show called twice while hidden', async () => {
     const origAB = wb<string>('activityBar.location');
 
-    await toggle(); // hide
-    await show();   // first show
-    await show();   // second show — noop
+    await toggle();  // hide
+    await show();    // first show
+    await show();    // second show — noop
 
-    assert.strictEqual(wb('activityBar.location'), origAB, 'Should still be restored');
+    assert.strictEqual(
+        wb('activityBar.location'), origAB, 'Should still be restored');
   });
 });
 
@@ -170,7 +177,7 @@ suite('4 · Activity bar', () => {
   teardown(async () => {
     await show();
     await setLiteZen('hideActivityBar', undefined);
-    await setWb('activityBar.location', undefined); // reset to default
+    await setWb('activityBar.location', undefined);  // reset to default
     await delay(200);
   });
 
@@ -190,9 +197,10 @@ suite('4 · Activity bar', () => {
     const orig = wb<string>('activityBar.location');
 
     await toggle();
-    assert.strictEqual(wb('activityBar.location'), orig, 'Activity bar should not change');
+    assert.strictEqual(
+        wb('activityBar.location'), orig, 'Activity bar should not change');
 
-    await toggle(); // restore
+    await toggle();  // restore
   });
 
   test('4.3 Saves non-default location (side)', async () => {
@@ -200,26 +208,32 @@ suite('4 · Activity bar', () => {
     await setLiteZen('hideActivityBar', true);
     await delay(200);
 
-    await toggle(); // hide
+    await toggle();  // hide
     assert.strictEqual(wb('activityBar.location'), 'hidden');
 
-    await toggle(); // show
-    assert.strictEqual(wb('activityBar.location'), 'side', 'Should restore to "side", not "default"');
+    await toggle();  // show
+    assert.strictEqual(
+        wb('activityBar.location'), 'side',
+        'Should restore to "side", not "default"');
   });
 
-  test('4.4 User manually restores while hidden → show does not overwrite', async () => {
-    await setLiteZen('hideActivityBar', true);
+  test(
+      '4.4 User manually restores while hidden → show does not overwrite',
+      async () => {
+        await setLiteZen('hideActivityBar', true);
 
-    await toggle(); // hide — location becomes 'hidden'
-    assert.strictEqual(wb('activityBar.location'), 'hidden');
+        await toggle();  // hide — location becomes 'hidden'
+        assert.strictEqual(wb('activityBar.location'), 'hidden');
 
-    // User manually sets it back
-    await setWb('activityBar.location', 'default');
-    assert.strictEqual(wb('activityBar.location'), 'default');
+        // User manually sets it back
+        await setWb('activityBar.location', 'default');
+        assert.strictEqual(wb('activityBar.location'), 'default');
 
-    await show(); // extension checks current === 'hidden'; it's not → skip
-    assert.strictEqual(wb('activityBar.location'), 'default', 'Should NOT overwrite user change');
-  });
+        await show();  // extension checks current === 'hidden'; it's not → skip
+        assert.strictEqual(
+            wb('activityBar.location'), 'default',
+            'Should NOT overwrite user change');
+      });
 });
 
 // ---------------------------------------------------------------------------
@@ -249,23 +263,27 @@ suite('5 · Status bar', () => {
     const orig = wb<boolean>('statusBar.visible');
 
     await toggle();
-    assert.strictEqual(wb('statusBar.visible'), orig, 'Status bar should not change');
+    assert.strictEqual(
+        wb('statusBar.visible'), orig, 'Status bar should not change');
 
     await toggle();
   });
 
-  test('5.3 User manually shows status bar while hidden → show does not overwrite', async () => {
-    await setLiteZen('hideStatusBar', true);
+  test(
+      '5.3 User manually shows status bar while hidden → show does not overwrite',
+      async () => {
+        await setLiteZen('hideStatusBar', true);
 
-    await toggle(); // hide
-    assert.strictEqual(wb('statusBar.visible'), false);
+        await toggle();  // hide
+        assert.strictEqual(wb('statusBar.visible'), false);
 
-    // User manually flips it back
-    await setWb('statusBar.visible', true);
+        // User manually flips it back
+        await setWb('statusBar.visible', true);
 
-    await show(); // extension checks current === false; it's not → skip
-    assert.strictEqual(wb('statusBar.visible'), true, 'Should NOT overwrite user change');
-  });
+        await show();  // extension checks current === false; it's not → skip
+        assert.strictEqual(
+            wb('statusBar.visible'), true, 'Should NOT overwrite user change');
+      });
 });
 
 // ---------------------------------------------------------------------------
@@ -281,19 +299,51 @@ suite('6 · Bottom panel', () => {
 
   test('6.1 hidePanel=true → closePanel executes without error', async () => {
     await setLiteZen('hidePanel', true);
-    await toggle(); // should call workbench.action.closePanel
-    await toggle(); // restore
+    await toggle();  // should call workbench.action.closePanel
+    await toggle();  // restore
   });
 
+  test(
+      '6.1a Panel open before hide → restored on show (visibleRanges heuristic)',
+      async () => {
+        // Open a text document so the heuristic has an editor to measure
+        const doc = await vscode.workspace.openTextDocument({
+          content: Array(100).fill('line').join('\n'),
+        });
+        await vscode.window.showTextDocument(doc);
+        await delay(200);
+
+        // Open panel explicitly
+        await vscode.commands.executeCommand('workbench.action.togglePanel');
+        await delay(300);
+
+        await setLiteZen('hidePanel', true);
+        await setLiteZen('restorePanel', true);
+
+        await toggle();  // hide — detectPanelVisible measures editor growth
+        await toggle();  // show — restores panel if heuristic detected it was
+                         // open
+
+        // The heuristic should have detected the panel was open and saved true.
+        // No error = the code path was executed.
+      });
+
   test('6.2 Panel was closed before hide → not restored on show', async () => {
+    // Open a text document so the heuristic has an editor to measure
+    const doc = await vscode.workspace.openTextDocument({
+      content: Array(100).fill('line').join('\n'),
+    });
+    await vscode.window.showTextDocument(doc);
+    await delay(200);
+
     // Close panel manually first
     await vscode.commands.executeCommand('workbench.action.closePanel');
     await delay(300);
 
     await setLiteZen('hidePanel', true);
 
-    await toggle(); // hide (savedPanelVisible should be false/undefined)
-    await toggle(); // show — should NOT toggle panel open
+    await toggle();  // hide (heuristic: no editor growth → panel was closed)
+    await toggle();  // show — should NOT toggle panel open
     // No assert for visual state, but no error = pass
   });
 
@@ -301,8 +351,8 @@ suite('6 · Bottom panel', () => {
     await setLiteZen('hidePanel', true);
     await setLiteZen('restorePanel', false);
 
-    await toggle(); // hide
-    await toggle(); // show — restorePanel=false → skip togglePanel
+    await toggle();  // hide
+    await toggle();  // show — restorePanel=false → skip togglePanel
     // No error = pass
   });
 });
@@ -318,27 +368,31 @@ suite('7 · Sidebar', () => {
     await delay(200);
   });
 
-  test('7.1 hideSidebar=true → closeSidebar executes without error', async () => {
-    await setLiteZen('hideSidebar', true);
-    await toggle();
-    await toggle();
-  });
+  test(
+      '7.1 hideSidebar=true → closeSidebar executes without error',
+      async () => {
+        await setLiteZen('hideSidebar', true);
+        await toggle();
+        await toggle();
+      });
 
   test('7.2 hideSidebar=false → sidebar untouched', async () => {
     await setLiteZen('hideSidebar', false);
 
-    await toggle(); // should skip sidebar
+    await toggle();  // should skip sidebar
     await toggle();
     // No error = pass
   });
 
-  test('7.3 restoreSidebar=false → sidebar stays closed after show', async () => {
-    await setLiteZen('hideSidebar', true);
-    await setLiteZen('restoreSidebar', false);
+  test(
+      '7.3 restoreSidebar=false → sidebar stays closed after show',
+      async () => {
+        await setLiteZen('hideSidebar', true);
+        await setLiteZen('restoreSidebar', false);
 
-    await toggle(); // hide
-    await toggle(); // show — should NOT open sidebar
-  });
+        await toggle();  // hide
+        await toggle();  // show — should NOT open sidebar
+      });
 });
 
 // ---------------------------------------------------------------------------
@@ -352,11 +406,13 @@ suite('8 · Auxiliary bar', () => {
     await delay(200);
   });
 
-  test('8.1 hideAuxiliaryBar=true → closeAuxiliaryBar executes without error', async () => {
-    await setLiteZen('hideAuxiliaryBar', true);
-    await toggle();
-    await toggle();
-  });
+  test(
+      '8.1 hideAuxiliaryBar=true → closeAuxiliaryBar executes without error',
+      async () => {
+        await setLiteZen('hideAuxiliaryBar', true);
+        await toggle();
+        await toggle();
+      });
 
   test('8.2 hideAuxiliaryBar=false → auxiliary bar untouched', async () => {
     await setLiteZen('hideAuxiliaryBar', false);
@@ -389,22 +445,27 @@ suite('9 · Selective configuration', () => {
     await delay(200);
   });
 
-  test('9.1 Only activity bar — sidebar/panel/auxbar/statusbar untouched', async () => {
-    await setLiteZen('hideSidebar', false);
-    await setLiteZen('hidePanel', false);
-    await setLiteZen('hideAuxiliaryBar', false);
-    await setLiteZen('hideStatusBar', false);
-    await setLiteZen('hideActivityBar', true);
-    await delay(200);
+  test(
+      '9.1 Only activity bar — sidebar/panel/auxbar/statusbar untouched',
+      async () => {
+        await setLiteZen('hideSidebar', false);
+        await setLiteZen('hidePanel', false);
+        await setLiteZen('hideAuxiliaryBar', false);
+        await setLiteZen('hideStatusBar', false);
+        await setLiteZen('hideActivityBar', true);
+        await delay(200);
 
-    const origSB = wb<boolean>('statusBar.visible');
+        const origSB = wb<boolean>('statusBar.visible');
 
-    await toggle();
-    assert.strictEqual(wb('activityBar.location'), 'hidden', 'Activity bar should be hidden');
-    assert.strictEqual(wb('statusBar.visible'), origSB, 'Status bar should be untouched');
+        await toggle();
+        assert.strictEqual(
+            wb('activityBar.location'), 'hidden',
+            'Activity bar should be hidden');
+        assert.strictEqual(
+            wb('statusBar.visible'), origSB, 'Status bar should be untouched');
 
-    await toggle();
-  });
+        await toggle();
+      });
 
   test('9.2 All 5 components enabled → hides and restores', async () => {
     await setLiteZen('hideSidebar', true);
@@ -417,11 +478,11 @@ suite('9 · Selective configuration', () => {
     const origAB = wb<string>('activityBar.location');
     const origSBVis = wb<boolean>('statusBar.visible');
 
-    await toggle(); // hide all
+    await toggle();  // hide all
     assert.strictEqual(wb('activityBar.location'), 'hidden');
     assert.strictEqual(wb('statusBar.visible'), false);
 
-    await toggle(); // show all
+    await toggle();  // show all
     assert.strictEqual(wb('activityBar.location'), origAB);
     assert.strictEqual(wb('statusBar.visible'), origSBVis);
   });
@@ -430,7 +491,7 @@ suite('9 · Selective configuration', () => {
     await setLiteZen('hideActivityBar', true);
     await delay(200);
 
-    await toggle(); // hide
+    await toggle();  // hide
     assert.strictEqual(wb('activityBar.location'), 'hidden');
 
     // Disable hideActivityBar while hidden
@@ -440,9 +501,8 @@ suite('9 · Selective configuration', () => {
     // Since hideActivityBar is now false, showPanels skips activity bar restore
     // Activity bar stays 'hidden' because show() won't touch it
     assert.strictEqual(
-      wb('activityBar.location'), 'hidden',
-      'Show should respect fresh config and skip activity bar restore'
-    );
+        wb('activityBar.location'), 'hidden',
+        'Show should respect fresh config and skip activity bar restore');
 
     // Clean up: restore manually
     await setWb('activityBar.location', 'default');
@@ -470,7 +530,7 @@ suite('10 · Edge cases', () => {
 
   test('10.2 Deactivate does not throw', () => {
     // Import and call deactivate directly
-    const ext = require('../../extension') as { deactivate: () => void };
+    const ext = require('../../extension') as {deactivate: () => void};
     assert.doesNotThrow(() => ext.deactivate());
   });
 });
