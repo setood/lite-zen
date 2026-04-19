@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
@@ -6,6 +7,15 @@ const STATE_KEY = 'liteZen.isHidden';
 const SAVED_ACTIVITY_BAR_LOCATION = 'liteZen.savedActivityBarLocation';
 const SAVED_STATUS_BAR_VISIBLE = 'liteZen.savedStatusBarVisible';
 const SAVED_PANEL_VISIBLE = 'liteZen.savedPanelVisible';
+
+/** Delay (ms) after closing/opening panels to let VS Code re-layout */
+const PANEL_DETECT_DELAY_MS = 100;
+/** Number of lines in the temporary document used for panel detection */
+const TEMP_DOC_LINE_COUNT = 100;
+/** Minimum visible lines required for the heuristic to be reliable */
+const MIN_VISIBLE_LINES = 3;
+/** Minimum line-count difference that indicates the panel was visible */
+const PANEL_DIFF_THRESHOLD = 2;
 
 let logFilePath: string|undefined;
 let loggingEnabled = false;
@@ -118,12 +128,12 @@ async function detectPanelVisibleTempDoc(): Promise<boolean|undefined> {
   log('--- detectPanelVisibleTempDoc START ---');
   const originalEditor = vscode.window.activeTextEditor;
 
-  // Create a long temporary document (500 lines guarantees measurable diff)
-  const content = Array(100).fill('.').join('\n');
+  // Create a temporary document long enough to guarantee a measurable diff
+  const content = Array(TEMP_DOC_LINE_COUNT).fill('.').join('\n');
   const doc = await vscode.workspace.openTextDocument({content});
   const editor = await vscode.window.showTextDocument(
       doc, {preview: true, preserveFocus: false});
-  await delay(100);
+  await delay(PANEL_DETECT_DELAY_MS);
 
   logEditorState('TEMPDOC after open');
   const linesBefore = getEditorVisibleLineCount();
@@ -143,7 +153,7 @@ async function detectPanelVisibleTempDoc(): Promise<boolean|undefined> {
   }
 
   await vscode.commands.executeCommand('workbench.action.closePanel');
-  await delay(100);
+  await delay(PANEL_DETECT_DELAY_MS);
 
   logEditorState('TEMPDOC after closePanel');
   const linesAfter = getEditorVisibleLineCount();
@@ -167,7 +177,7 @@ async function detectPanelVisibleTempDoc(): Promise<boolean|undefined> {
   }
 
   const diff = linesAfter - linesBefore;
-  const wasPanelVisible = diff > 2;
+  const wasPanelVisible = diff > PANEL_DIFF_THRESHOLD;
   log(`tempDoc: diff = ${diff}, wasPanelVisible = ${wasPanelVisible}`);
   log('--- detectPanelVisibleTempDoc END ---');
   return wasPanelVisible;
@@ -187,7 +197,7 @@ async function detectPanelVisibleHeuristic(): Promise<boolean|undefined> {
   const linesBefore = getEditorVisibleLineCount();
   log(`linesBefore = ${linesBefore}, totalDocLines = ${totalDocLines}`);
 
-  if (linesBefore === undefined || linesBefore < 3) {
+  if (linesBefore === undefined || linesBefore < MIN_VISIBLE_LINES) {
     log(`linesBefore too small or undefined → returning undefined`);
     return undefined;
   }
@@ -205,8 +215,8 @@ async function detectPanelVisibleHeuristic(): Promise<boolean|undefined> {
 
   log('executing workbench.action.closePanel...');
   await vscode.commands.executeCommand('workbench.action.closePanel');
-  log('closePanel done, waiting 100ms...');
-  await delay(100);
+  log(`closePanel done, waiting ${PANEL_DETECT_DELAY_MS}ms...`);
+  await delay(PANEL_DETECT_DELAY_MS);
 
   logEditorState('AFTER closePanel + delay');
   const linesAfter = getEditorVisibleLineCount();
@@ -217,7 +227,7 @@ async function detectPanelVisibleHeuristic(): Promise<boolean|undefined> {
   }
 
   const diff = linesAfter - linesBefore;
-  const wasPanelVisible = diff > 2;
+  const wasPanelVisible = diff > PANEL_DIFF_THRESHOLD;
   log(`diff = ${diff} (${linesAfter} - ${linesBefore}), wasPanelVisible = ${
       wasPanelVisible}`);
 
@@ -356,9 +366,8 @@ export function activate(context: vscode.ExtensionContext): void {
   loggingEnabled =
       vscode.workspace.getConfiguration('liteZen').get('enableLogging', false);
   const wsFolder = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
-  logFilePath = wsFolder ?
-      path.join(wsFolder, 'log.txt') :
-      path.join(require('os').homedir(), 'lite-zen-log.txt');
+  logFilePath = wsFolder ? path.join(wsFolder, 'log.txt') :
+                           path.join(os.homedir(), 'lite-zen-log.txt');
   if (loggingEnabled) {
     try {
       fs.writeFileSync(logFilePath, '');
@@ -383,14 +392,24 @@ export function activate(context: vscode.ExtensionContext): void {
   log(`activation: wasHidden=${wasHidden}`);
   setFocusContext(wasHidden);
 
+  let isToggling = false;
   const toggleDisposable =
       vscode.commands.registerCommand('liteZen.toggle', async () => {
-        const isHidden = context.workspaceState.get<boolean>(STATE_KEY, false);
-        log(`toggle: isHidden=${isHidden}`);
-        if (isHidden) {
-          await showPanels(context);
-        } else {
-          await hidePanels(context);
+        if (isToggling) {
+          return;
+        }
+        isToggling = true;
+        try {
+          const isHidden =
+              context.workspaceState.get<boolean>(STATE_KEY, false);
+          log(`toggle: isHidden=${isHidden}`);
+          if (isHidden) {
+            await showPanels(context);
+          } else {
+            await hidePanels(context);
+          }
+        } finally {
+          isToggling = false;
         }
       });
 

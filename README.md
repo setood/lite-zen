@@ -55,18 +55,18 @@ The hotkey is fully customizable — rebind them in **Keyboard Shortcuts** (`Cmd
 
 All settings are under `liteZen.*` and can be changed in Settings UI or `settings.json`:
 
-| Setting                       | Default | Description                                    |
-| ----------------------------- | ------- | ---------------------------------------------- |
-| `liteZen.hideSidebar`         | `true`  | Hide the primary sidebar                       |
-| `liteZen.hidePanel`           | `true`  | Hide the bottom panel (terminal, output, etc.) |
-| `liteZen.hideActivityBar`     | `false` | Hide the activity bar                          |
-| `liteZen.hideStatusBar`       | `false` | Hide the status bar                            |
-| `liteZen.hideAuxiliaryBar`    | `true`  | Hide the secondary sidebar                     |
-| `liteZen.restoreSidebar`      | `true`  | Restore sidebar on toggle back                 |
-| `liteZen.restorePanel`        | `true`  | Restore bottom panel on toggle back            |
-| `liteZen.restoreAuxiliaryBar` | `true`  | Restore secondary sidebar on toggle back       |
-| `liteZen.panelDetectionMethod`| `"auto"` | Panel detection: `"auto"` (heuristic, safe default on short files) or `"tempDocument"` (fallback via temp doc for reliable detection) |
-| `liteZen.enableLogging`       | `false` | Write diagnostic logs to `log.txt` in workspace root |
+| Setting                        | Default  | Description                                                                                                                           |
+| ------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `liteZen.hideSidebar`          | `true`   | Hide the primary sidebar                                                                                                              |
+| `liteZen.hidePanel`            | `true`   | Hide the bottom panel (terminal, output, etc.)                                                                                        |
+| `liteZen.hideActivityBar`      | `false`  | Hide the activity bar                                                                                                                 |
+| `liteZen.hideStatusBar`        | `false`  | Hide the status bar                                                                                                                   |
+| `liteZen.hideAuxiliaryBar`     | `true`   | Hide the secondary sidebar                                                                                                            |
+| `liteZen.restoreSidebar`       | `true`   | Restore sidebar on toggle back                                                                                                        |
+| `liteZen.restorePanel`         | `true`   | Restore bottom panel on toggle back                                                                                                   |
+| `liteZen.restoreAuxiliaryBar`  | `true`   | Restore secondary sidebar on toggle back                                                                                              |
+| `liteZen.panelDetectionMethod` | `"auto"` | Panel detection: `"auto"` (heuristic, safe default on short files) or `"tempDocument"` (fallback via temp doc for reliable detection) |
+| `liteZen.enableLogging`        | `false`  | Write diagnostic logs to `log.txt` in workspace root                                                                                  |
 
 ## Lite Zen vs. Alternatives
 
@@ -96,6 +96,52 @@ If you find Lite Zen useful, consider supporting its development:
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/setood)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-tip-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/setood)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-sponsor-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/setood)
+
+## How It Works
+
+### Toggle Algorithm
+
+**Hide** (`liteZen.toggle` when panels are visible):
+
+1. Save the current state of the activity bar location and status bar visibility to `workspaceState`.
+2. Detect whether the bottom panel is currently open (see heuristic below).
+3. Close configured UI components (sidebar, panel, auxiliary bar) in parallel.
+4. Set `activityBar.location` to `"hidden"` and `statusBar.visible` to `false` if configured.
+5. Persist `liteZen.isHidden = true` in workspace state and update the `when`-clause context.
+
+**Show** (`liteZen.toggle` again, or `Escape`):
+
+1. Restore activity bar and status bar to their previously saved values.
+2. Re-open sidebar, bottom panel, and auxiliary bar — but only the ones that were actually visible before hiding. The bottom panel is skipped if the detection determined it was closed.
+3. Persist `liteZen.isHidden = false`.
+
+A `isToggling` guard prevents race conditions from rapid double-presses of the hotkey.
+
+### Bottom Panel Detection Trick
+
+VS Code has no API to query "is the bottom panel open?". Lite Zen uses a **visible-lines heuristic**:
+
+1. Record the number of visible editor lines (`editor.visibleRanges`).
+2. Execute `workbench.action.closePanel`.
+3. Wait `PANEL_DETECT_DELAY_MS` (100 ms) for VS Code to re-layout.
+4. Measure visible lines again.
+5. If the difference exceeds `PANEL_DIFF_THRESHOLD` (2 lines), the panel was open.
+
+The heuristic is **unreliable** when:
+- There is no active editor or visible ranges.
+- The file has fewer than `MIN_VISIBLE_LINES` (3) visible lines.
+- The end of the file is already on screen (VS Code won't add lines by scrolling up).
+
+**Fallback — `tempDocument` mode**: When the heuristic is unreliable and `panelDetectionMethod` is set to `"tempDocument"`, the extension opens a scratch document with `TEMP_DOC_LINE_COUNT` (100) lines, measures before/after closing the panel, then closes the temp document and restores the original editor. In `"auto"` mode (default), it simply closes the panel and assumes it should be restored on show.
+
+### Constants
+
+| Constant                | Value  | Purpose                                                         |
+| ----------------------- | ------ | --------------------------------------------------------------- |
+| `PANEL_DETECT_DELAY_MS` | 100 ms | Delay after closing/opening panels to let VS Code re-layout     |
+| `TEMP_DOC_LINE_COUNT`   | 100    | Number of lines in the temporary document for panel detection   |
+| `MIN_VISIBLE_LINES`     | 3      | Minimum visible lines required for the heuristic to work        |
+| `PANEL_DIFF_THRESHOLD`  | 2      | Minimum line-count difference that indicates the panel was open |
 
 ## License
 

@@ -344,3 +344,89 @@
 [2026-04-19T07:15:57.627Z] panel restore: savedPanelVisible=true (type=boolean), restorePanel=true
 [2026-04-19T07:15:57.627Z] panel restore: will execute togglePanel (savedPanelVisible is true or undefined)
 [2026-04-19T07:15:57.694Z] === showPanels END ===
+[2026-04-19T08:00:51.376Z] toggle: isHidden=false
+[2026-04-19T08:00:51.377Z] === hidePanels START ===
+[2026-04-19T08:00:51.377Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:00:51.377Z] detecting panel visibility...
+[2026-04-19T08:00:51.377Z] --- detectPanelVisible START ---
+[2026-04-19T08:00:51.377Z] BEFORE closePanel: no activeTextEditor
+[2026-04-19T08:00:51.378Z] no activeTextEditor or no visibleRanges → returning undefined
+[2026-04-19T08:00:51.378Z] heuristic returned undefined, falling back to tempDocument
+[2026-04-19T08:00:51.378Z] --- detectPanelVisibleTempDoc START ---
+[2026-04-19T08:00:51.562Z] TEMPDOC after open: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-36:1]], totalVisibleLines=36
+[2026-04-19T08:00:51.562Z] tempDoc linesBefore = 36
+[2026-04-19T08:00:51.720Z] TEMPDOC after closePanel: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-54:1]], totalVisibleLines=54
+[2026-04-19T08:00:51.720Z] tempDoc linesAfter = 54
+[2026-04-19T08:00:51.734Z] tempDoc: diff = 18, wasPanelVisible = true
+[2026-04-19T08:00:51.734Z] --- detectPanelVisibleTempDoc END ---
+[2026-04-19T08:00:51.734Z] panelVisible detected = true, saving to workspaceState
+[2026-04-19T08:00:51.781Z] === hidePanels END ===
+[2026-04-19T08:00:55.890Z] toggle: isHidden=true
+[2026-04-19T08:00:55.891Z] === showPanels START ===
+[2026-04-19T08:00:55.891Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:00:55.891Z] panel restore: savedPanelVisible=true (type=boolean), restorePanel=true
+[2026-04-19T08:00:55.891Z] panel restore: will execute togglePanel (savedPanelVisible is true or undefined)
+[2026-04-19T08:00:55.944Z] === showPanels END ===
+[2026-04-19T08:00:56.668Z] toggle: isHidden=false
+[2026-04-19T08:00:56.668Z] === hidePanels START ===
+[2026-04-19T08:00:56.669Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:00:56.669Z] detecting panel visibility...
+[2026-04-19T08:00:56.669Z] --- detectPanelVisible START ---
+[2026-04-19T08:00:56.669Z] BEFORE closePanel: no activeTextEditor
+[2026-04-19T08:00:56.669Z] no activeTextEditor or no visibleRanges → returning undefined
+[2026-04-19T08:00:56.669Z] heuristic returned undefined, falling back to tempDocument
+[2026-04-19T08:00:56.669Z] --- detectPanelVisibleTempDoc START ---
+[2026-04-19T08:00:56.841Z] TEMPDOC after open: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-36:1]], totalVisibleLines=36
+[2026-04-19T08:00:56.842Z] tempDoc linesBefore = 36
+[2026-04-19T08:00:57.000Z] TEMPDOC after closePanel: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-54:1]], totalVisibleLines=54
+[2026-04-19T08:00:57.000Z] tempDoc linesAfter = 54
+[2026-04-19T08:00:57.010Z] tempDoc: diff = 18, wasPanelVisible = true
+[2026-04-19T08:00:57.010Z] --- detectPanelVisibleTempDoc END ---
+[2026-04-19T08:00:57.010Z] panelVisible detected = true, saving to workspaceState
+[2026-04-19T08:00:57.027Z] === hidePanels END ===
+[2026-04-19T08:00:59.611Z] toggle: isHidden=true
+[2026-04-19T08:00:59.611Z] === showPanels START ===
+[2026-04-19T08:00:59.612Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:00:59.612Z] panel restore: savedPanelVisible=true (type=boolean), restorePanel=true
+[2026-04-19T08:00:59.612Z] panel restore: will execute togglePanel (savedPanelVisible is true or undefined)
+[2026-04-19T08:00:59.667Z] === showPanels END ===
+[2026-04-19T08:01:00.190Z] toggle: isHidden=false
+[2026-04-19T08:01:00.190Z] === hidePanels START ===
+[2026-04-19T08:01:00.191Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:01:00.191Z] detecting panel visibility...
+[2026-04-19T08:01:00.191Z] --- detectPanelVisible START ---
+[2026-04-19T08:01:00.191Z] BEFORE closePanel: no activeTextEditor
+[2026-04-19T08:01:00.191Z] no activeTextEditor or no visibleRanges → returning undefined
+[2026-04-19T08:01:00.191Z] heuristic returned undefined, falling back to tempDocument
+[2026-04-19T08:01:00.191Z] --- detectPanelVisibleTempDoc START ---
+[2026-04-19T08:01:00.362Z] TEMPDOC after open: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-36:1]], totalVisibleLines=36
+[2026-04-19T08:01:00.363Z] tempDoc linesBefore = 36
+[2026-04-19T08:01:00.522Z] TEMPDOC after closePanel: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-54:1]], totalVisibleLines=54
+[2026-04-19T08:01:00.522Z] tempDoc linesAfter = 54
+[2026-04-19T08:01:00.533Z] tempDoc: diff = 18, wasPanelVisible = true
+[2026-04-19T08:01:00.533Z] --- detectPanelVisibleTempDoc END ---
+[2026-04-19T08:01:00.533Z] panelVisible detected = true, saving to workspaceState
+[2026-04-19T08:01:00.556Z] === hidePanels END ===
+[2026-04-19T08:02:50.303Z] toggle: isHidden=true
+[2026-04-19T08:02:50.303Z] === showPanels START ===
+[2026-04-19T08:02:50.304Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:02:50.304Z] panel restore: savedPanelVisible=true (type=boolean), restorePanel=true
+[2026-04-19T08:02:50.304Z] panel restore: will execute togglePanel (savedPanelVisible is true or undefined)
+[2026-04-19T08:02:50.371Z] === showPanels END ===
+[2026-04-19T08:02:50.984Z] toggle: isHidden=false
+[2026-04-19T08:02:50.984Z] === hidePanels START ===
+[2026-04-19T08:02:50.984Z] config: {"hideSidebar":true,"hidePanel":true,"hideActivityBar":false,"hideStatusBar":false,"hideAuxiliaryBar":true,"restoreSidebar":true,"restorePanel":true,"restoreAuxiliaryBar":true}
+[2026-04-19T08:02:50.985Z] detecting panel visibility...
+[2026-04-19T08:02:50.985Z] --- detectPanelVisible START ---
+[2026-04-19T08:02:50.985Z] BEFORE closePanel: no activeTextEditor
+[2026-04-19T08:02:50.985Z] no activeTextEditor or no visibleRanges → returning undefined
+[2026-04-19T08:02:50.985Z] heuristic returned undefined, falling back to tempDocument
+[2026-04-19T08:02:50.985Z] --- detectPanelVisibleTempDoc START ---
+[2026-04-19T08:02:51.168Z] TEMPDOC after open: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-36:1]], totalVisibleLines=36
+[2026-04-19T08:02:51.168Z] tempDoc linesBefore = 36
+[2026-04-19T08:02:51.330Z] TEMPDOC after closePanel: file=Untitled-1, totalLines=500, visibleRanges=[[0:0-54:1]], totalVisibleLines=54
+[2026-04-19T08:02:51.330Z] tempDoc linesAfter = 54
+[2026-04-19T08:02:51.347Z] tempDoc: diff = 18, wasPanelVisible = true
+[2026-04-19T08:02:51.347Z] --- detectPanelVisibleTempDoc END ---
+[2026-04-19T08:02:51.347Z] panelVisible detected = true, saving to workspaceState
+[2026-04-19T08:02:51.372Z] === hidePanels END ===
